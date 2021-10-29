@@ -1,0 +1,18 @@
+aws_region = ""
+aws_bucket_consul_license_arn = ""
+aws_bucket_consul_license = ""
+
+ca_cert = <<-EOT
+-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----
+EOT
+
+consul_subnets = [
+
+]
+consul_sg_id = ""
+kms_key_arn_s3_bucket = ""
+resource_name_prefix = "this must be the same value provided to the main module for cloud auto-join to work properly"
+secrets_manager_arn_gossip = ""
+vpc_id = ""
