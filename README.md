@@ -34,10 +34,9 @@ on AWS using the Enterprise version of Consul 1.10+.
   routed to each other correctly:
   - Three public subnets
   - Three [NAT
-    gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) (one in each public subnet)
-  - Three private subnets (please make sure your private subnets are
-    specifically tagged so you can identify them. The Consul module will use
-    these tags to deploy the Consul servers into them.)
+    gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
+    (one in each public subnet)
+  - Three private subnets
 
 - Use the
   [example](https://github.com/hashicorp/terraform-aws-consul-ent-starter/tree/main/examples/secrets)
@@ -59,11 +58,13 @@ module "consul-ent" {
   resource_name_prefix = "test"
   # VPC ID you wish to deploy into
   vpc_id               = "vpc-abc123xxx"
-  # private subnet tags are required and allow you to filter which
+  # private subnet IDs are required and allow you to specify which
   # subnets you will deploy your Consul nodes into
-  private_subnet_tags = {
-    Consul = "deploy"
-  }
+  private_subnet_ids = [
+    "subnet-0xyz",
+    "subnet-1xyz",
+    "subnet-2xyz",
+  ]
 
   consul_license_filepath = "/Users/user/Downloads/consul.hclic"
 

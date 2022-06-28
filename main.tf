@@ -15,8 +15,7 @@ module "iam" {
 module "networking" {
   source = "./modules/networking"
 
-  private_subnet_tags = var.private_subnet_tags
-  vpc_id              = var.vpc_id
+  vpc_id = var.vpc_id
 }
 
 module "object_storage" {
@@ -57,6 +56,6 @@ module "vm_servers" {
   resource_name_prefix      = var.resource_name_prefix
   userdata_script           = module.user_data.consul_userdata_server_base64_encoded
   user_supplied_ami_id      = var.user_supplied_ami_id
-  consul_subnets            = module.networking.consul_subnet_ids
+  consul_subnets            = var.private_subnet_ids
   vpc_id                    = module.networking.vpc_id
 }
