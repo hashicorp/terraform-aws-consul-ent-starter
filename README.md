@@ -25,7 +25,7 @@ on AWS using the Enterprise version of Consul 1.10+.
     - Amazon VPC
 
 - This module assumes you have an existing VPC along with AWS secrets manager
-  secrets that contain TLS certs, a gossip encryption key, and a ACL tokens. If
+  secrets that contain TLS certs, a gossip encryption key, and an ACL token. If
   you do not, you may use the following
   [quickstart](https://github.com/hashicorp/terraform-aws-consul-ent-starter/tree/main/examples/prereqs_quickstart)
   to deploy these resources.
