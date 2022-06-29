@@ -1,8 +1,3 @@
-variable "aws_region" {
-  type        = string
-  description = "AWS region to deploy resources into"
-}
-
 variable "ca_common_name" {
   default     = "ca.consul"
   description = "DNS name for the certificate authority"
