@@ -1,6 +1,6 @@
 output "ca_cert" {
   description = "Certificate Authority public cert"
-  value       = module.secret.ca_cert
+  value       = module.secrets.ca_cert
 }
 
 output "private_subnet_ids" {
