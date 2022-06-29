@@ -24,27 +24,19 @@ on AWS using the Enterprise version of Consul 1.10+.
       instances with session manager using the AWS CLI)
     - Amazon VPC
 
-- To deploy without an existing VPC, use the [example
-  VPC](https://github.com/hashicorp/terraform-aws-consul-ent-starter/tree/main/examples/aws-vpc)
-  code to build out the pre-requisite environment. Ensure you are selecting a
-  region that has at least three [AWS Availability
-  Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones).
+- This module assumes you have an existing VPC along with AWS secrets manager
+  secrets that contain TLS certs, a gossip encryption key, and an ACL token. If
+  you do not, you may use the following
+  [quickstart](https://github.com/hashicorp/terraform-aws-consul-ent-starter/tree/main/examples/prereqs_quickstart)
+  to deploy these resources.
 
 - To deploy into an existing VPC, ensure the following components exist and are
   routed to each other correctly:
   - Three public subnets
   - Three [NAT
-    gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) (one in each public subnet)
-  - Three private subnets (please make sure your private subnets are
-    specifically tagged so you can identify them. The Consul module will use
-    these tags to deploy the Consul servers into them.)
-
-- Use the
-  [example](https://github.com/hashicorp/terraform-aws-consul-ent-starter/tree/main/examples/secrets)
-  code to create TLS certs, an ACL token, and a gossip encryption key stored in
-  [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/).
-- Create a Terraform configuration that pulls in the Consul module and specifies
-  values for the required variables:
+    gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
+    (one in each public subnet)
+  - Three private subnets
 
 ```hcl
 provider "aws" {
@@ -59,11 +51,13 @@ module "consul-ent" {
   resource_name_prefix = "test"
   # VPC ID you wish to deploy into
   vpc_id               = "vpc-abc123xxx"
-  # private subnet tags are required and allow you to filter which
+  # private subnet IDs are required and allow you to specify which
   # subnets you will deploy your Consul nodes into
-  private_subnet_tags = {
-    Consul = "deploy"
-  }
+  private_subnet_ids = [
+    "subnet-0xyz",
+    "subnet-1xyz",
+    "subnet-2xyz",
+  ]
 
   consul_license_filepath = "/Users/user/Downloads/consul.hclic"
 

@@ -1,25 +1,11 @@
-variable "aws_region" {
-  description = "AWS region to deploy resources into"
-  type        = string
-  default     = "us-east-1"
-}
-
 variable "azs" {
   description = "availability zones to use in AWS region"
   type        = list(string)
-  default = [
-    "us-east-1a",
-    "us-east-1b",
-    "us-east-1c",
-  ]
 }
 
 variable "common_tags" {
   type        = map(string)
   description = "Tags for VPC resources"
-  default = {
-    Consul = "dev"
-  }
 }
 
 variable "resource_name_prefix" {
@@ -35,14 +21,6 @@ variable "private_subnet_cidrs" {
     "10.0.32.0/19",
     "10.0.64.0/19",
   ]
-}
-
-variable "private_subnet_tags" {
-  type        = map(string)
-  description = "Tags for private subnets. Be sure to provide these tags to the Consul installation module."
-  default = {
-    Consul = "deploy"
-  }
 }
 
 variable "public_subnet_cidrs" {

@@ -23,7 +23,7 @@ variable "consul_license_name" {
 
 variable "consul_version" {
   type        = string
-  default     = "1.10.3"
+  default     = "1.12.2"
   description = "Consul version"
 }
 
@@ -51,9 +51,9 @@ variable "kms_key_deletion_window" {
   description = "Duration in days after which the key (used for S3 bucket encryption) is deleted after destruction of the resource (must be between 7 and 30 days)."
 }
 
-variable "private_subnet_tags" {
-  type        = map(string)
-  description = "Tags which specify the subnets to deploy Consul into"
+variable "private_subnet_ids" {
+  type        = list(string)
+  description = "Subnet IDs to deploy Consul into"
 }
 
 variable "resource_name_prefix" {
