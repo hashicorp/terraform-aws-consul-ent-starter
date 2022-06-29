@@ -24,11 +24,11 @@ on AWS using the Enterprise version of Consul 1.10+.
       instances with session manager using the AWS CLI)
     - Amazon VPC
 
-- To deploy without an existing VPC, use the [example
-  VPC](https://github.com/hashicorp/terraform-aws-consul-ent-starter/tree/main/examples/aws-vpc)
-  code to build out the pre-requisite environment. Ensure you are selecting a
-  region that has at least three [AWS Availability
-  Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones).
+- This module assumes you have an existing VPC along with AWS secrets manager
+  secrets that contain TLS certs, a gossip encryption key, and a ACL tokens. If
+  you do not, you may use the following
+  [quickstart](https://github.com/hashicorp/terraform-aws-consul-ent-starter/tree/main/examples/prereqs_quickstart)
+  to deploy these resources.
 
 - To deploy into an existing VPC, ensure the following components exist and are
   routed to each other correctly:
@@ -37,13 +37,6 @@ on AWS using the Enterprise version of Consul 1.10+.
     gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
     (one in each public subnet)
   - Three private subnets
-
-- Use the
-  [example](https://github.com/hashicorp/terraform-aws-consul-ent-starter/tree/main/examples/secrets)
-  code to create TLS certs, an ACL token, and a gossip encryption key stored in
-  [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/).
-- Create a Terraform configuration that pulls in the Consul module and specifies
-  values for the required variables:
 
 ```hcl
 provider "aws" {
