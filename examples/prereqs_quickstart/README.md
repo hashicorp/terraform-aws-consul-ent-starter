@@ -26,9 +26,9 @@ The Amazon VPC will have the following:
 ## Note
 
 - The default AWS region is `us-east-1` (as specified by the `aws_region`
-  variable). You may change this if wish to deploy Consul elsewhere, but please
-  be sure to change the value for the `azs` variable as well and specify the
-  appropriate availability zones for your new region.
+  variable). You may change this if you wish to deploy Consul elsewhere, but
+  please be sure to change the value for the `azs` variable as well and specify
+  the appropriate availability zones for your new region.
 
 ### Security Note:
 - The [Terraform State](https://www.terraform.io/docs/language/state/index.html)
